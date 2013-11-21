@@ -17,7 +17,7 @@ namespace BookingSite.Utils
 
             switch (hash)
             {
-                case HashType.MD5   : return hashFunction(MD5.Create());
+                case HashType.MD5: return hashFunction(MD5.Create());
                      
                 case HashType.SHA256: return hashFunction(SHA256.Create());
 

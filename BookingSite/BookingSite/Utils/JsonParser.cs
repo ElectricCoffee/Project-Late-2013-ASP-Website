@@ -10,7 +10,7 @@ namespace BookingSite.Utils
     {
         public static T DeserializeJson<T>(this string input)
         {
-            return new JavaScriptSerializer().Deserialize<T>(input); 
+            return new JavaScriptSerializer().Deserialize<T>(input);
         }
     }
 }

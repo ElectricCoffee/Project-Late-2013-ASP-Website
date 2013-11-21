@@ -11,7 +11,7 @@ namespace BookingSite.Utils
         public static string Get(string inputUri) 
         {
             var uri = new Uri(inputUri);
-            return new WebClient().DownloadString(uri); 
+            return new WebClient().DownloadString(uri);
         }
 
         // add Put, Post, and Delete when needed
