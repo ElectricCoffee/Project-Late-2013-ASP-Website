@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+using BookingSite.Utils;
+using BookingSite.Models;
+
 namespace BookingSite.Controllers
 {
     public class LoginController : Controller
@@ -22,8 +25,14 @@ namespace BookingSite.Controllers
         [HttpPost, ActionName("Do")]
         public ActionResult Login()
         {
-            TempData["Username"] = Request.Form["usernameBox"];
-            TempData["Password"] = Request.Form["passwordBox"];
+            var username = Request.Form["usernameBox"];
+            var password = Request.Form["passwordBox"];
+            var hashedPassword = String.Format("{0}{1}", username.Hash(HashType.MD5), password).Hash(HashType.SHA256);
+
+            var response = ServerCommunicator.Get("").DeserializeJson<RestResponseContainer>(); 
+            
+            TempData["Username"] = username;
+            TempData["Password"] = hashedPassword;
 
             return new RedirectResult("/MemberPage/Index");
         }
