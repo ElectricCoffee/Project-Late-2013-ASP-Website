@@ -16,7 +16,7 @@ namespace BookingSite.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.Title = "Grimt Loginsystem";
+            ViewBag.Title = "EAL Lærerbooking Login";
             return View();
         }
 
@@ -29,7 +29,7 @@ namespace BookingSite.Controllers
             var password = Request.Form["passwordBox"];
             var hashedPassword = String.Format("{0}{1}", username.Hash(HashType.MD5), password).Hash(HashType.SHA256);
 
-            var response = ServerCommunicator.Get("").DeserializeJson<RestResponseContainer>(); 
+            // var response = ServerCommunicator.Get("").DeserializeJson<RestResponseContainer>(); 
             
             TempData["Username"] = username;
             TempData["Password"] = hashedPassword;
