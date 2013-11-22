@@ -29,10 +29,14 @@ namespace BookingSite.Controllers
             var password = Request.Form["passwordBox"];
             var hashedPassword = String.Format("{0}{1}", username.Hash(HashType.MD5), password).Hash(HashType.SHA256);
 
-            // var response = ServerCommunicator.Get("").DeserializeJson<RestResponseContainer>(); 
+            var uri = String.Format("http://localhost:14781/api/login?username={0}&password={1}", username, password); // use to test locally
+            //var uri = String.Format("http://92.243.227.143/api/login?username={0}&password={1}", username, password); // use to test un-encrypted
+            //var uri = String.Format("http://92.243.227.143/api/Login?Username={0}&Password={1}", username, hashedPassword); // use for the final thing
+
+            var response = ServerCommunicator.Get(uri).DeserializeJson<RestResponseContainer>(); 
             
-            TempData["Username"] = username;
-            TempData["Password"] = hashedPassword;
+            TempData["Username"] = response.Key;
+            TempData["Password"] = response.Value;
 
             return new RedirectResult("/MemberPage/Index");
         }

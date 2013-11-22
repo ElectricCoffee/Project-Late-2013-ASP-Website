@@ -7,7 +7,7 @@ using System.Web;
 
 namespace BookingSite.Utils
 {
-    public enum HashType { MD5, SHA512, SHA256 }
+    public enum HashType { MD5, SHA512, SHA256, SHA384, SHA1 }
 
     public static class TextHasher
     {
@@ -17,12 +17,16 @@ namespace BookingSite.Utils
 
             switch (hash)
             {
-                case HashType.MD5: return hashFunction(MD5.Create());
-                     
-                case HashType.SHA256: return hashFunction(SHA256.Create());
-
-                case HashType.SHA512: return hashFunction(SHA512.Create());
-
+                case HashType.MD5:
+                    return hashFunction(MD5.Create());
+                case HashType.SHA1:
+                    return hashFunction(SHA1.Create());
+                case HashType.SHA256:
+                    return hashFunction(SHA256.Create());
+                case HashType.SHA384:
+                    return hashFunction(SHA384.Create());
+                case HashType.SHA512:
+                    return hashFunction(SHA512.Create());
                 default: return "error"; // unreachable
             }
         }
