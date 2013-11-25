@@ -13,8 +13,9 @@ namespace BookingSite.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.Username = TempData["Username"];
-            ViewBag.Password = TempData["Password"]; 
+            ViewBag.Response = TempData["Response"];
+            ViewBag.Access = TempData["Access"];
+            ViewBag.UID = TempData["UID"];
             
 
             return View();

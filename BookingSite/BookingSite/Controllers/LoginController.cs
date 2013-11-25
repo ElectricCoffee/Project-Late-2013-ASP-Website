@@ -35,8 +35,9 @@ namespace BookingSite.Controllers
 
             var response = ServerCommunicator.Get(uri).DeserializeJson<RestResponseContainer>(); 
             
-            TempData["Username"] = response.Key;
-            TempData["Password"] = response.Value;
+            TempData["Response"] = response.Key;
+            TempData["Access"] = response.Value.Key != null ? response.Value.Key : "";
+            TempData["UID"] = response.Value.Value != null ? response.Value.Value : "";
 
             return new RedirectResult("/MemberPage/Index");
         }
