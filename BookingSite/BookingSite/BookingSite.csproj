@@ -226,6 +226,7 @@
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\MemberPage\Index.cshtml" />
     <Content Include="Views\RegisterUser\Index.cshtml" />
+    <Content Include="Views\RegisterUser\ResponsePage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

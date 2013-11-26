@@ -20,8 +20,7 @@ namespace BookingSite.Controllers
             return View();
         }
 
-        // POST: /Login/Index
-
+        // POST: /Login/Index/Do
         [HttpPost, ActionName("Do")]
         public ActionResult Login()
         {
