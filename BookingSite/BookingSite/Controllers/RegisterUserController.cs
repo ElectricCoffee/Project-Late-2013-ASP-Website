@@ -22,6 +22,7 @@ namespace BookingSite.Controllers
 
         public ActionResult Register()
         {
+            ///*
             var firstname = Request.Form["Firstname"];
             var lastname = Request.Form["Lastname"];
             var email = Request.Form["Email"];
@@ -29,7 +30,7 @@ namespace BookingSite.Controllers
             var homeroom = Request.Form["Homeroom"];
 
             var uri = string.Format(
-                "http://localhost:14781/api/registeruser?firstname={0}&lastname={1}&emal={2}&password={3}&homeroomClass={4}", 
+                "http://localhost:14781/api/registeruser?firstname={0}&lastname={1}&email={2}&password={3}&homeroomClass={4}", 
                 firstname, lastname, email, password, homeroom);
 
             var response = ServerCommunicator.Get(uri).DeserializeJson<RestResponseContainer>();
@@ -40,8 +41,15 @@ namespace BookingSite.Controllers
                     " da de indtastede oplysninger var forkerte, vær venlig at prøve igen";
             }
             else TempData["Message"] = "Tillykke, du er nu oprettet, vent på at din lærer har godkendt det.";
+            //*/
 
             return new RedirectResult("/RegisterUser/ResponsePage");
+        }
+
+        [ActionName("ResponsePage")]
+        public ActionResult ResponsePage()
+        {
+            return View();
         }
     }
 }
