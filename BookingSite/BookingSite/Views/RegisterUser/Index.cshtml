@@ -1,18 +1,21 @@
-﻿@{
-    ViewBag.Title = "Index";
-}
+﻿<link href="~/Content/themes/Styles/StyleSheetRegister.css" rel="stylesheet" type="text/css">
 
-<h2>Index</h2>
-<div>
+<header>
+    <h2>@ViewBag.Title</h2>
+</header>
+
+<div class="login-field">
     <form method="post" action="/RegisterUser/Do">
         <label for="Firstname">Fornavn:</label>
-        <input type ="text" name="Firstname"><br />
+        <input type ="text" name="Firstname">
         <label for="Lastname">Efternavn:</label>
-        <input type ="text" name="Lastname"><br />
+        <input type ="text" name="Lastname">
         <label for="Email">E-mail adresse:</label>
-        <input type ="text" name="Email"><br />
+        <input type ="text" name="Email">
         <label for="Password">Adgangskode:</label>
-        <input type ="password" name="Password"><br />
+        <input type ="password" name="Password">
+        <label for="Repeat">Gentag Adgangskode:</label>
+        <input type ="password" name="Repeat">
         <label for="Homeroom">Hold:</label>
         <input type="text" name="Homeroom">
         
