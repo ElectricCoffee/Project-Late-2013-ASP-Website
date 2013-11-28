@@ -24,7 +24,12 @@ namespace BookingSite.Models
             _bookings.Add(booking);
         }
 
-        public PossibleBooking ReadBooking(int index)
+        public PossibleBooking ReadBookingAtId(int id)
+        {
+            return _bookings.FirstOrDefault(b => b.Id == id);
+        }
+
+        public PossibleBooking ReadBookingAtIndex(int index)
         {
             return _bookings[index];
         }
@@ -57,9 +62,10 @@ namespace BookingSite.Models
 
     public class PossibleBooking
     {
-        public bool Checked { get; set; }
+        public int Id { get; set; }
         public string Subject { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public DateTime Date { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
     }
 }

@@ -14,27 +14,32 @@ namespace BookingSite.Controllers
 {
     public class PossibleBookingController : Controller
     {
+        private PossibleBookingList _bookings;
+
         public ActionResult Index()
         {
-            PossibleBookingList bookings = new PossibleBookingList();
+            Session["Bookings"] = new PossibleBookingList();
 
             var now = DateTime.Now;
-            var span = new TimeSpan(2, 0, 0, 0);
+            var span = new TimeSpan(2,0,0);
             var endDate = now.Add(span);
 
-            bookings.CreateBookings(
+            (Session["Bookings"] as PossibleBookingList).CreateBookings(
                 new PossibleBooking {
-                    Checked = false,
-                    Subject = "Android", 
-                    StartDate = now, 
-                    EndDate = endDate },
+                    Id        = 1,
+                    Subject   = "Android", 
+                    Date      = now,
+                    StartTime = now, 
+                    EndTime   = endDate },
                 new PossibleBooking {
-                    Checked = false,
-                    Subject = "Design of Applications", 
-                    StartDate = now.Add(new TimeSpan(2, 0, 0, 0)), 
-                    EndDate = now.Add(new TimeSpan(4, 0, 0, 0)) });
+                    Id        = 2,
+                    Subject   = "Design of Applications", 
+                    Date = now.Add(new TimeSpan(2, 0, 0, 0)),
+                    StartTime = now.Add(new TimeSpan(2, 0, 0, 0)), 
+                    EndTime   = now.Add(new TimeSpan(5,30,0))
+                });
 
-            ViewBag.Bookings = bookings.ReadBookings();
+            ViewBag.Bookings = (Session["Bookings"] as PossibleBookingList).ReadBookings();
 
             return View();
         }
@@ -60,6 +65,24 @@ namespace BookingSite.Controllers
             ServerCommunicator.Post(uri, json);
 
             return new RedirectResult(Request.RawUrl);
+        }
+
+        [ActionName("details")]
+        public ActionResult DetailPage(string id)
+        {
+            int i;
+            PossibleBooking booking = null;
+
+            if(int.TryParse(id, out i)) {
+                booking = (Session["Bookings"] as PossibleBookingList).ReadBookingAtId(i);
+            }
+
+            ViewBag.ID = booking.Id;
+            ViewBag.Subject = booking.Subject;
+            ViewBag.Date = booking.Date;
+            ViewBag.StartTime = booking.StartTime;
+            ViewBag.EndTime = booking.EndTime;
+            return View();
         }
     }
 }
