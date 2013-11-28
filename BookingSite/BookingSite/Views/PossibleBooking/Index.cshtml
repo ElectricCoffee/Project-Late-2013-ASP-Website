@@ -4,7 +4,7 @@
 
 <div class="booking-table">
     <form action="/PossibleBooking/table">
-        <table border="1" id="table">
+        <table border="1" id="delete">
             <tr>
                 <th><input type="checkbox" onclick="checkAllBoxes()" class="master-checkbox"/></th>
                 <th>ID</th>
@@ -19,13 +19,13 @@
                 <td><input type="checkbox" class="check"/></td>
                 <td>@e.Id</td>
                 <td>@e.Subject</td>
-                <td>@e.Date.ToString("dd/MM/yyyy")</td>
-                <td>@e.StartTime.ToString("HH:mm")</td>
+                <td>@e.StartDate.ToString("dd/MM/yyyy")</td>
+                <td>@e.StartDate.ToString("HH:mm")</td>
                 <td>@e.EndTime.ToString("HH:mm")</td>
             </tr>
             }
         </table>
-        <input type="button" onclick="detailAction()" class="detail_button" value="Detaljer" />
+        <input type="button" onclick="detailAction()" value="Detaljer" />
         <input type="button" onclick="editAction()" value="Redigér" />
         <input type="submit" value="Slet" />
     </form>
@@ -37,10 +37,10 @@
         <input type="text" name="Id" class="input_id"/>
 
         <label for="Date">Dato:</label>
-        <input type="date" name="Date" class="input_date" value="2013-11-28">
+        <input type="date" name="Date" class="input_date" value="@DateTime.Now.ToString("yyyy-MM-dd")">
 
         <label for="StartTime">Starttid:</label>
-        <input type="time" name="StartTime" class="input_start_time">
+        <input type="time" name="StartTime" class="input_start_time" value="@DateTime.Now.ToString("HH:mm")">
 
         <label for="EndTime">Sluttid:</label>
         <input type="time" name="EndTime" class="input_end_time">
@@ -48,7 +48,6 @@
         <label for="SubjectBox">Fag: </label>
         <input type="text" name="SubjectBox" id="subject" class="input_subject"/>
 
-        <!--<input type="submit" value="Ryd"   name="input_button"/>-->
         <input type="submit" value="Opret/Redigér" />
     </form>
 </div>

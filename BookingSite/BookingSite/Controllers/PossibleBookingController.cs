@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using BookingSite.Models;
 
 using Table = BookingSite.Utils.PossibleBookings.TableMethods;
 using Input = BookingSite.Utils.PossibleBookings.InputMethods;
@@ -14,7 +13,6 @@ namespace BookingSite.Controllers
 {
     public class PossibleBookingController : Controller
     {
-        private PossibleBookingList _bookings;
 
         public ActionResult Index()
         {
@@ -28,14 +26,13 @@ namespace BookingSite.Controllers
                 new PossibleBooking {
                     Id        = 1,
                     Subject   = "Android", 
-                    Date      = now,
-                    StartTime = now, 
-                    EndTime   = endDate },
+                    StartDate = now,
+                    EndTime   = endDate 
+                },
                 new PossibleBooking {
                     Id        = 2,
                     Subject   = "Design of Applications", 
-                    Date = now.Add(new TimeSpan(2, 0, 0, 0)),
-                    StartTime = now.Add(new TimeSpan(2, 0, 0, 0)), 
+                    StartDate = now.Add(new TimeSpan(2, 0, 0, 0)),
                     EndTime   = now.Add(new TimeSpan(5,30,0))
                 });
 
@@ -44,7 +41,7 @@ namespace BookingSite.Controllers
             return View();
         }
 
-        [HttpPost, ActionName("table")]
+        [HttpPost, ActionName("delete")]
         public ActionResult DeleteBooking()
         {
             
@@ -79,8 +76,8 @@ namespace BookingSite.Controllers
 
             ViewBag.ID = booking.Id;
             ViewBag.Subject = booking.Subject;
-            ViewBag.Date = booking.Date;
-            ViewBag.StartTime = booking.StartTime;
+            ViewBag.Date = booking.StartDate;
+            ViewBag.StartTime = booking.StartDate;
             ViewBag.EndTime = booking.EndTime;
             return View();
         }
