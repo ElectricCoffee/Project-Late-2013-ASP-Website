@@ -126,6 +126,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\BookingController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MemberPageController.cs" />
     <Compile Include="Controllers\PossibleBookingController.cs" />
@@ -197,6 +198,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Content\themes\Styles\StyleSheetBooking.css" />
     <Content Include="Content\themes\Styles\StyleSheetLogin.css" />
     <Content Include="Content\themes\Styles\StyleSheetRegister.css" />
     <Content Include="Global.asax" />
@@ -235,6 +237,8 @@
     <Content Include="Views\RegisterUser\ResponsePage.cshtml" />
     <Content Include="Views\PossibleBooking\Index.cshtml" />
     <Content Include="Views\PossibleBooking\Details.cshtml" />
+    <Content Include="Views\Booking\Index.cshtml" />
+    <Content Include="Views\Booking\CreateBooking.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
