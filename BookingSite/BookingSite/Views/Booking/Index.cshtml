@@ -3,17 +3,42 @@
     function goToCreateBooking() { window.location.href = "/Booking/CreateBooking" };
     function deleteBooking() { };
 </script>
+<div class="main-content">
+    <h1> Mine bookinger </h1>
 
-<h1> Mine bookinger </h1>
+    <table class="table" id="table">
+        <tr>
+            <th class="leftmost"><input type="checkbox" onclick="checkAllBoxes()" class="master-checkbox"/></th>
+            <th>Fag</th>
+            <th>Starttid</th>
+            <th>Sluttid</th>
+        </tr>
+        <tr>
+            <td class="leftmost"><input type="checkbox" onclick="checkAllBoxes()" class="master-checkbox"/></td>
+            <td>dummyfag</td>
+            <td>10:45</td>
+            <td>11:45</td>
+        </tr>
+        <tr>
+            <td class="leftmost"><input type="checkbox" onclick="checkAllBoxes()" class="master-checkbox"/></td>
+            <td>dummyfag</td>
+            <td>10:45</td>
+            <td>11:45</td>
+        </tr>
+        <tr>
+            <td class="leftmost"><input type="checkbox" onclick="checkAllBoxes()" class="master-checkbox"/></td>
+            <td>dummyfag</td>
+            <td>10:45</td>
+            <td>11:45</td>
+        </tr>
+        <tr>
+            <td class="leftmost"><input type="checkbox" onclick="checkAllBoxes()" class="master-checkbox"/></td>
+            <td>dummyfag</td>
+            <td>10:45</td>
+            <td>11:45</td>
+        </tr>
+    </table>
 
-<table border="1" id="table">
-            <tr>
-                <th><input type="checkbox" onclick="checkAllBoxes()" class="master-checkbox"/></th>
-                <th>Fag</th>
-                <th>Starttid</th>
-                <th>Sluttid</th>
-            </tr>
-        </table>
-
-<input type ="button" onclick = "goToCreateBooking()" value = "Opret ny" />
-<input type ="button" onclick = "deleteBooking()" value="Slet"
+    <input type ="button" onclick = "goToCreateBooking()" value = "Opret ny" />
+    <input type ="button" onclick = "deleteBooking()" value="Slet" />
+</div>

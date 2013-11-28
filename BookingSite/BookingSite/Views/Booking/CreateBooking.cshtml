@@ -1,12 +1,12 @@
 ﻿<link href="~/Content/themes/Styles/StyleSheetBooking.css" rel="stylesheet" type="text/css">
-<script>
-function getSubject() { };
-function choseAvivableDate() { };
-function createBooking() { };
-function cancel() { };
+<script>    
+    function getSubject() { };
+    function choseAvivableDate() { };
+    function createBooking() { };
+    function cancel() { };
 
 </script>
-<div>
+<div class="main-content">
     <h1>Ny booking</h1>
 
     <h2>Fag</h2>
@@ -24,13 +24,19 @@ function cancel() { };
     </select>
 
     <h2>Vælg tid</h2>
-    <label for="StartTime">Start tid</label>
-    <input type="time" name="StartTime" class="input_time" value="2013-11-28">
-    <label for="EndTime">Slut tid</label>
-    <input type="time" name="EndTime" class="input_time" value="2013-11-28">
+    <div class="time">
+        <label for="StartTime">Start tid</label>
+        <input type="time" name="StartTime" class="input_time" value="2013-11-28">
+    </div>
+    <div class="time">
+        <label for="EndTime">Slut tid</label>
+        <input type="time" name="EndTime" class="input_time" value="2013-11-28">
+    </div>
 
-    <label for="comment"><h2>Kommentar</h2></label>
-    <input type="text" name="comment" />
+    <div class ="comment">
+        <label for="comment"><h2>Kommentar</h2></label>
+        <textarea name="Text1" cols="35" rows="5" ... ></textarea>
+    </div>
 
     <input type ="button" onclick = "createBooking()" value = "Create" />
     <input type ="button" onclick = "cancel()" value="Annuller" />

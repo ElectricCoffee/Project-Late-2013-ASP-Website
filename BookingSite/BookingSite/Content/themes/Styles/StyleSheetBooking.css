@@ -36,22 +36,22 @@ input {
     overflow: hidden;
 }
 
-h1, h2, .login-field label {
+h1, h2, label {
     color: #dedede;
 }
 
-.login-field label, .login-field input[type=text], .login-field input[type=password] {
+label, input[type=text], input[type=password] {
     font-size: 16px;
     display: block;
     width: 100%;
 }
 
-.login-field input[type=text], .login-field input[type=password] {
+input[type=text], input[type=password] {
     margin-bottom: 20px;
     background-color: #f0f0f0;
 }
 
-.login-field input[type=submit] {
+input[type=submit] {
     font-size: 16px;    
     display: inline-block;
     float: right;
@@ -66,17 +66,17 @@ h1, h2, .login-field label {
     -webkit-transition: 1s background-color;
 }
 
-.login-field input[type=submit]:hover {
+input[type=submit]:hover {
     background-color: #29adad;
 }
 
-.login-field input[type=submit]:active {
+input[type=submit]:active {
     position: relative;
     top: 1px;
     border: 0;
 }
 
-.login-field input[type=submit]:after {
+input[type=submit]:after {
    content: " "; /* Older browser do not support empty content */
    visibility: hidden;
    display: block;
@@ -84,8 +84,63 @@ h1, h2, .login-field label {
    clear: both;
 }
 
-div {
-    width:300px;
+.main-content {
+    width:960px;
     margin: auto;
-    height: 500px;
+    background-color: #0c8284;
+    box-sizing:border-box;
+    padding: 10px 75px;
+}
+
+.time {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.table{
+    border: solid 2px;
+    border-color: #155959;
+    background-color: #f0f0f0;
+    border-spacing: 0;
+}
+    .table th {
+        border-bottom: solid 2px;
+        border-color: #155959;  
+        padding: 2px;
+        text-align: left;    
+    }
+    .table th {
+        padding: 5px 10px;
+        border-right: 1px solid #155959;
+    }
+    .table th:last-child {
+        border-right: none;
+    }
+    .table th:first-child {
+        padding: 5px 5px;
+        border-right: solid 2px #155959;
+    }
+    .table th:last-child {
+        border-right: none;
+    }
+    .table td {
+        padding: 5px 10px;
+        border-right: 1px solid #155959;
+    }
+    .table td:first-child {
+        padding: 5px 5px;
+        border-right: solid 2px #155959;
+    }
+    .table td:last-child {
+        border-right: none;
+    }
+
+.time:last-child {
+    margin: 0;
+}
+
+body, html, .main-content {
+
+    min-height: 100%;
+    height: 100%;
 }
