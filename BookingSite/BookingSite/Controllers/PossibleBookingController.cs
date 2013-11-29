@@ -14,8 +14,6 @@ namespace BookingSite.Controllers
 {
     public class PossibleBookingController : Controller
     {
-        private PossibleBookingList _bookings;
-
         public ActionResult Index()
         {
             Session["Bookings"] = new PossibleBookingList();
@@ -47,8 +45,6 @@ namespace BookingSite.Controllers
         [HttpPost, ActionName("table")]
         public ActionResult DeleteBooking()
         {
-            
-
             return View(); // placeholder
         }
 
