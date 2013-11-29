@@ -15,22 +15,24 @@ namespace BookingSite.Utils
             return new WebClient().DownloadString(uri);
         }
 
-        private static void PostHelper(string jsonInput, string inputUri, Action<byte[], WebClient, Uri> clientfunction)
+        private static void PostHelper(string inputUri, Action<WebClient, Uri> clientfunction)
         {
             var client = new WebClient();
-            var bytes = Encoding.UTF8.GetBytes(jsonInput);
+            client.Headers[HttpRequestHeader.ContentType] = "application/json";
             var uri = new Uri(inputUri);
-            clientfunction(bytes, client, uri);
+            clientfunction(client, uri);
         }
 
         public static void Post(string inputUri, string jsonInput)
         {
-            PostHelper(jsonInput, inputUri, (bytes, client, uri) => client.UploadData(uri, bytes));
+            PostHelper(inputUri, (client, uri) => {
+                client.UploadString(uri, "POST", jsonInput);
+            });
         }
 
         public static void PostAsync(string inputUri, string jsonInput)
         {
-            PostHelper(jsonInput, inputUri, (bytes, client, uri) => client.UploadDataAsync(uri, bytes));
+            PostHelper(inputUri, (client, uri) => client.UploadStringAsync(uri, "POST", jsonInput));
         }
     }
 } 
