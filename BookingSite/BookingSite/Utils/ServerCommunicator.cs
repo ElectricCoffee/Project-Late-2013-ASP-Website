@@ -9,28 +9,47 @@ namespace BookingSite.Utils
 {
     public static class ServerCommunicator
     {
-        public static string Get(string inputUri) 
-        {
-            var uri = new Uri(inputUri);
-            return new WebClient().DownloadString(uri);
-        }
+        private const string APPLICATION_JSON = "application/json";
 
-        private static void PostHelper(string jsonInput, string inputUri, Action<byte[], WebClient, Uri> clientfunction)
+        private static void GetHelper(string inputUri, Action<WebClient, Uri> clientfunction)
         {
             var client = new WebClient();
-            var bytes = Encoding.UTF8.GetBytes(jsonInput);
+            client.Headers[HttpRequestHeader.ContentType] = APPLICATION_JSON;
             var uri = new Uri(inputUri);
-            clientfunction(bytes, client, uri);
+            clientfunction(client, uri);
+        }
+
+        public static string Get(string inputUri) 
+        {
+            string result = "";
+            GetHelper(inputUri, (client, uri) => result = client.DownloadString(uri));
+            return result;
+        }
+
+        public static void GetAsync(string inputUri, DownloadStringCompletedEventHandler downloadStringCompleted)
+        {
+            GetHelper(inputUri, (client, uri) => { 
+                client.DownloadStringCompleted += downloadStringCompleted;
+                client.DownloadStringAsync(uri);
+            });
+        }
+
+        private static void PostHelper(string inputUri, Action<WebClient, Uri> clientfunction)
+        {
+            var client = new WebClient();
+            client.Headers[HttpRequestHeader.ContentType] = APPLICATION_JSON;
+            var uri = new Uri(inputUri);
+            clientfunction(client, uri);
         }
 
         public static void Post(string inputUri, string jsonInput)
         {
-            PostHelper(jsonInput, inputUri, (bytes, client, uri) => client.UploadData(uri, bytes));
+            PostHelper(inputUri, (client, uri) => client.UploadString(uri, "POST", jsonInput));
         }
 
         public static void PostAsync(string inputUri, string jsonInput)
         {
-            PostHelper(jsonInput, inputUri, (bytes, client, uri) => client.UploadDataAsync(uri, bytes));
+            PostHelper(inputUri, (client, uri) => client.UploadStringAsync(uri, "POST", jsonInput));
         }
     }
 } 

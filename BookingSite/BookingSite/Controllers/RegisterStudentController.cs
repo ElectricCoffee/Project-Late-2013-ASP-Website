@@ -2,13 +2,15 @@
 using BookingSite.Utils;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
 namespace BookingSite.Controllers
 {
-    public class RegisterUserController : Controller
+    public class RegisterStudentController : Controller
     {
         //
         // GET: /RegisterUser/
@@ -31,33 +33,38 @@ namespace BookingSite.Controllers
             ///*
             // These are the values gotten from the input fields on the web-page.
             var firstname = Request.Form["Firstname"];
-            var lastname = Request.Form["Lastname"];
-            var email = Request.Form["Email"];
-            var repeat = Request.Form["Repeat"];
-            var password = Request.Form["Password"];
-            var homeroom = Request.Form["Homeroom"];
+            var lastname  = Request.Form["Lastname"];
+            var username  = Request.Form["Email"];
+            var repeat    = Request.Form["Repeat"];
+            var password  = Request.Form["Password"];
+            var homeroom  = Request.Form["Homeroom"];
 
             // if the password and the repeated password don't match, then you aren't allowed to even connect to the REST server.
             if (password.Equals(repeat))
             {
 
-                var uri = string.Format(
-                    "http://localhost:14781/api/registeruser?firstname={0}&lastname={1}&email={2}&password={3}&homeroomClass={4}",
-                    firstname, lastname, email, password, homeroom);
+                var uri = "http://localhost:14781/api/registerstudent";
 
-                var response = ServerCommunicator.Get(uri).DeserializeJson<RestResponseContainer>();
+                Student student = new Student {
+                    HomeRoomClass = new HomeRoomClass {Name = homeroom},
+                    Password = password,
+                    Username = username,
+                    Name = new Name {FirstName = firstname, LastName = lastname},
+                    Approved = false
+                };
 
-                if (response.Key.Contains("Error"))
+                try
                 {
-                    message("Der kunne desværre ikke blive oprettet en bruger i systemet," +
-                        " da de indtastede oplysninger var forkerte, vær venlig at prøve igen");
+                    ServerCommunicator.Post(uri, student.SerializeToJsonObject());
                 }
-                else message("Tillykke, du er nu oprettet, vent på at din lærer har godkendt det.");
-                //*/
+                catch (WebException we)
+                {
+                    Debug.WriteLine(we.Message);
+                }
             }
             else message("Du har tastet din adgangskode forkert, prøv igen.");
 
-            return new RedirectResult("/RegisterUser/ResponsePage");
+            return new RedirectResult("/RegisterStudent/ResponsePage");
         }
 
         [ActionName("ResponsePage")]

@@ -1,4 +1,23 @@
-﻿function checkAllBoxes() {
+﻿$(document).ready(function () {
+    resetFormOnClick();
+});
+
+function resetFormOnClick() {
+    var checkbox = $("input[type=checkbox]");
+
+    checkbox.click(function (e) {
+        if (!checkbox.is(":checked")) {
+            $(".input_id").val("");
+            $(".input_subject").val("");
+            $(".input_date").val("");
+            $(".input_start_time").val("");
+            $(".input_end_time").val("");
+            $("#submit-btn").val("Opret");
+        }
+    });
+}
+
+function checkAllBoxes() {
     if ($(".master-checkbox").is(":checked"))
         $(".check").prop("checked", true);
     else
@@ -37,7 +56,7 @@ function editAction() {
         subject = row.children().eq(2).text();
         console.log(subject);
 
-        date = row.children().eq(3).text();
+        date = row.children().eq(3).children().eq(0).attr("datetime");
         console.log(date);
 
         startTime = row.children().eq(4).text();
@@ -56,4 +75,5 @@ function editAction() {
     $(".input_date").val(date);
     $(".input_start_time").val(startTime);
     $(".input_end_time").val(endTime);
+    $("#submit-btn").val("Redigér");
 }

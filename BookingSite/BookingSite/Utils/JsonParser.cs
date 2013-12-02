@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Script.Serialization;
@@ -27,7 +28,9 @@ namespace BookingSite.Utils
         /// <returns>String containing a JSON Object</returns>
         public static string SerializeToJsonObject<T>(this T input)
         {
-            return new JavaScriptSerializer().Serialize(input);
+            string value = new JavaScriptSerializer().Serialize(input);
+            Debug.WriteLine(value);
+            return value;
         }
     }
 }
