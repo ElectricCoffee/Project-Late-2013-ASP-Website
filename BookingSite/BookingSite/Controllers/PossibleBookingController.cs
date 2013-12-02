@@ -14,11 +14,12 @@ namespace BookingSite.Controllers
 {
     public class PossibleBookingController : Controller
     {
+        private const string ISO8601_FORMAT = "{0}T{1}Z";
         public ActionResult Index()
         {
             Session["Bookings"] = new PossibleBookingList();
 
-            ServerCommunicator.Get("http://localhost:14781/api/possiblebooking").DeserializeJson<PossibleBookingList>();
+            ServerCommunicator.Get("http://localhost:14781/api/possiblebooking").DeserializeJson<IEnumerable<PossibleBooking>>();
 
             var now = DateTime.Now;
             var span = new TimeSpan(2,0,0);
@@ -27,14 +28,12 @@ namespace BookingSite.Controllers
             (Session["Bookings"] as PossibleBookingList).CreateBookings(
                 new PossibleBooking {
                     Id        = 1,
-                    Subject   = "Android", 
-                    Date      = now,
+                    Subject   = "Android",
                     StartTime = now, 
                     EndTime   = endDate },
                 new PossibleBooking {
                     Id        = 2,
-                    Subject   = "Design of Applications", 
-                    Date = now.Add(new TimeSpan(2, 0, 0, 0)),
+                    Subject   = "Design of Applications",
                     StartTime = now.Add(new TimeSpan(2, 0, 0, 0)), 
                     EndTime   = now.Add(new TimeSpan(5,30,0))
                 });
@@ -54,11 +53,19 @@ namespace BookingSite.Controllers
         public ActionResult InputActions()
         {
             var uri = String.Format("http://localhost:14781/api/PossibleBooking");
-            var startData = Request.Form["StartBox"];
-            var endData = Request.Form["EndBox"];
-            var subjectData = Request.Form["SubjectBox"];
+            var date = Request.Form["Date"];
+            var startTime = Request.Form["StartTime"];
+            var endTime = Request.Form["EndTime"];
+            var subject = Request.Form["SubjectBox"];
 
-            var json = Input.Create(startData, endData, subjectData);
+            var possibleBooking = new PossibleBooking
+            {
+                StartTime = DateTime.Parse(string.Format(ISO8601_FORMAT, date, startTime)),
+                EndTime = DateTime.Parse(string.Format(ISO8601_FORMAT, date, endTime)),
+                Subject = subject
+            };
+
+            var json = possibleBooking.SerializeToJsonObject();
 
             ServerCommunicator.Post(uri, json);
 
@@ -77,9 +84,9 @@ namespace BookingSite.Controllers
 
             ViewBag.ID = booking.Id;
             ViewBag.Subject = booking.Subject;
-            ViewBag.Date = booking.Date;
-            ViewBag.StartTime = booking.StartTime;
-            ViewBag.EndTime = booking.EndTime;
+            ViewBag.Date = booking.StartTime.Date.ToString();
+            ViewBag.StartTime = booking.StartTime.TimeOfDay.ToString();
+            ViewBag.EndTime = booking.EndTime.TimeOfDay.ToString();
             return View();
         }
     }

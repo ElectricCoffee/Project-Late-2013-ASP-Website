@@ -19,7 +19,7 @@
                 <td><input type="checkbox" class="check"/></td>
                 <td>@e.Id</td>
                 <td>@e.Subject</td>
-                <td>@e.Date.ToString("dd/MM/yyyy")</td>
+                <td><time datetime="@e.StartTime.Date.ToString("dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture)">@e.StartTime.Date.ToString("dd/MM/yyyy")</time></td>
                 <td>@e.StartTime.ToString("HH:mm")</td>
                 <td>@e.EndTime.ToString("HH:mm")</td>
             </tr>
@@ -33,8 +33,7 @@
 
 <div class="input-field">
     <form method="post" action="/PossibleBooking/input">
-        <label for="Id">Booking ID: (blank hvis du opretter en ny)</label>
-        <input type="text" name="Id" class="input_id"/>
+        <input type="hidden" name="Id" class="input_id"/>
 
         <label for="Date">Dato:</label>
         <input type="date" name="Date" class="input_date" value="2013-11-28">
@@ -49,6 +48,6 @@
         <input type="text" name="SubjectBox" id="subject" class="input_subject"/>
 
         <!--<input type="submit" value="Ryd"   name="input_button"/>-->
-        <input type="submit" value="Opret/Redigér" />
+        <input id="submit-btn" type="submit" value="Opret" />
     </form>
 </div>

@@ -14,7 +14,7 @@ namespace BookingSite.Utils
         private static void GetHelper(string inputUri, Action<WebClient, Uri> clientfunction)
         {
             var client = new WebClient();
-            client.Headers[HttpResponseHeader.ContentType] = APPLICATION_JSON;
+            client.Headers[HttpRequestHeader.ContentType] = APPLICATION_JSON;
             var uri = new Uri(inputUri);
             clientfunction(client, uri);
         }
