@@ -26,16 +26,19 @@ namespace BookingSite.Controllers
             var endDate = now.Add(span);
 
             (Session["Bookings"] as PossibleBookingList).CreateBookings(
-                new PossibleBooking {
-                    Id        = 1,
-                    Subject   = "Android",
-                    StartTime = now, 
-                    EndTime   = endDate },
-                new PossibleBooking {
-                    Id        = 2,
-                    Subject   = "Design of Applications",
-                    StartTime = now.Add(new TimeSpan(2, 0, 0, 0)), 
-                    EndTime   = now.Add(new TimeSpan(5,30,0))
+                new PossibleBooking
+                {
+                    Id = 1,
+                    Subject = new Subject { Name = "Android" },
+                    StartTime = now,
+                    EndTime = endDate
+                },
+                new PossibleBooking
+                {
+                    Id = 2,
+                    Subject = new Subject { Name = "Design of Applications" },
+                    StartTime = now.Add(new TimeSpan(2, 0, 0, 0)),
+                    EndTime = now.Add(new TimeSpan(5, 30, 0))
                 });
 
             ViewBag.Bookings = (Session["Bookings"] as PossibleBookingList).ReadBookings();
@@ -62,7 +65,7 @@ namespace BookingSite.Controllers
             {
                 StartTime = DateTime.Parse(string.Format(ISO8601_FORMAT, date, startTime)),
                 EndTime = DateTime.Parse(string.Format(ISO8601_FORMAT, date, endTime)),
-                Subject = subject
+                Subject = new Subject { Name = subject }
             };
 
             var json = possibleBooking.SerializeToJsonObject();
@@ -83,7 +86,7 @@ namespace BookingSite.Controllers
             }
 
             ViewBag.ID = booking.Id;
-            ViewBag.Subject = booking.Subject;
+            ViewBag.Subject = booking.Subject.Name;
             ViewBag.Date = booking.StartTime.Date.ToString();
             ViewBag.StartTime = booking.StartTime.TimeOfDay.ToString();
             ViewBag.EndTime = booking.EndTime.TimeOfDay.ToString();

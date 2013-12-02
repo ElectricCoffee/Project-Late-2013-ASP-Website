@@ -18,7 +18,7 @@
             <tr>
                 <td><input type="checkbox" class="check"/></td>
                 <td>@e.Id</td>
-                <td>@e.Subject</td>
+                <td>@e.Subject.Name</td>
                 <td><time datetime="@e.StartTime.Date.ToString("dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture)">@e.StartTime.Date.ToString("dd/MM/yyyy")</time></td>
                 <td>@e.StartTime.ToString("HH:mm")</td>
                 <td>@e.EndTime.ToString("HH:mm")</td>
