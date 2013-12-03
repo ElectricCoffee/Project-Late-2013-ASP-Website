@@ -35,7 +35,7 @@ h1, h2, label {
 
 .input-field label, .input-field input {
     display: table-cell;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
  #submit-btn {
@@ -43,8 +43,16 @@ h1, h2, label {
 }
 
 .buttons {
+    margin-top: 10px;
+}
+
+.late {
     margin-top: 20px;
 }
+
+.lateButton {
+    margin-top: 10px;
+} 
 
 input[type=submit], input[type=button] {
     font-size: 16px;    
