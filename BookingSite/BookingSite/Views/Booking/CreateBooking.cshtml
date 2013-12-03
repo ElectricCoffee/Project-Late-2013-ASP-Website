@@ -2,7 +2,6 @@
 <script>    
     function getSubject() { };
     function choseAvivableDate() { };
-    function createBooking() { };
     function cancel() { };
 
 </script>
@@ -10,24 +9,26 @@
     <h1>Ny booking</h1>
 
     <h2>Fag</h2>
-    <select>
-      <option value="getSubject">Android</option>
-      <option value="getSubject">System udviklings metoder</option>
-      <option value="getSubject">Design af applikationer</option>
+    <select name="subject">
+        @foreach (var subject in ViewBag.Subjects) {
+             <option value="getSubject">@subject.Name</option>
+        }
     </select>
 
     <h2>Dato</h2>
-    <select>
-      <option value="choseAvivableDate">28-11-13</option>
-      <option value="choseAvivableDate">29-11-13</option>
-      <option value="choseAvivableDate">29-11-13</option>
+    <select name="date">
+        @foreach (var date in ViewBag.Bookings) { 
+            <option value="choseAvivableDate">@date.StartTime</option>
+        }
     </select>
 
-    <div class ="comment">
+    <div class ="comment" name="comment">
         <label for="comment"><h2>Kommentar</h2></label>
         <textarea name="Text1" cols="35" rows="5" ... ></textarea>
     </div>
 
-    <input type ="button" onclick = "createBooking()" value = "Create" />
-    <input type ="button" onclick = "cancel()" value="Annuller" />
+    <form method="post" action="CreateBooking/do"> 
+        <input type ="submit" value = "Create" />
+        <input type ="button" onclick = "cancel()" value="Annuller" />
+    </form>
 </div>
