@@ -25,7 +25,7 @@ function checkAllBoxes() {
 }
 
 function find(func) {
-    var table = $("#table tr");
+    var table = $(".table tr");
     console.log(table.text());
     table.each(function (index) {
         if (index != 0) {
