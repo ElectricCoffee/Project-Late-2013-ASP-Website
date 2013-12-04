@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Script.Serialization;
 
-namespace REST_Service.Utils
+namespace BookingSite.Utils
 {
     /// <summary>
     /// Serves to remove boilerplate code, by simply letting the user call a method directly on the object you're using

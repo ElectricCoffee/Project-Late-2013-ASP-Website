@@ -21,10 +21,10 @@ namespace BookingSite.Controllers
         [HttpGet,ActionName ("CreateBooking")]
         public ActionResult CreateBooking()
         {
-            var possibleBookings = ServerCommunicator.Get("http://localhost:14781/api/possiblebooking").DeserializeJson<PossibleBookingList>();
+            var possibleBookings = ServerCommunicator.Get("http://localhost:14781/api/possiblebooking").DeserializeJson<PossibleBooking[]>();
             var subjects = ServerCommunicator.Get("http://localhost:14781/api/subject").DeserializeJson<Subject[]>();
 
-            ViewBag.Bookings = possibleBookings.ReadBookings();
+            ViewBag.Bookings = possibleBookings;
             ViewBag.Subjects = subjects;
            
             return View();
