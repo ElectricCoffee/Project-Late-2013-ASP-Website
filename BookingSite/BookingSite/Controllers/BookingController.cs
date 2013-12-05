@@ -11,12 +11,17 @@ namespace BookingSite.Controllers
     public class BookingController : Controller
     {
         private const string SERVER_URI = "http://localhost:14781/api/";
+        private string username = "trin123a";
 
         //
         // GET: /Booking/
 
         public ActionResult Index()
         {
+            var concreteBookings = ServerCommunicator.Get(SERVER_URI + "concretebooking").DeserializeJson<Models.ConcreteBooking[]>().ToList();
+
+            ViewBag.BookingList = concreteBookings.Where(cb => cb.Student.Username.Equals(username));
+            
             return View();
         }
 
@@ -44,7 +49,6 @@ namespace BookingSite.Controllers
             var subject = Request.Form["subject"];
             var date    = Request.Form["date"];
             var comment = Request.Form["comment_box"];
-            var username = "trin123a";
 
             var subjects = ServerCommunicator.Get(SERVER_URI + "subject").DeserializeJson<Subject[]>();
             var possibleBookings = ServerCommunicator.Get(SERVER_URI + "possiblebooking").DeserializeJson<PossibleBooking[]>();

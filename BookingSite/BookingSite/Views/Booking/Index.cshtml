@@ -13,32 +13,17 @@
             <th>Starttid</th>
             <th>Sluttid</th>
         </tr>
-        <tr>
-            <td class="leftmost"><input type="checkbox" onclick="checkAllBoxes()" class="master-checkbox"/></td>
-            <td>dummyfag</td>
-            <td>10:45</td>
-            <td>11:45</td>
-        </tr>
-        <tr>
-            <td class="leftmost"><input type="checkbox" onclick="checkAllBoxes()" class="master-checkbox"/></td>
-            <td>dummyfag</td>
-            <td>10:45</td>
-            <td>11:45</td>
-        </tr>
-        <tr>
-            <td class="leftmost"><input type="checkbox" onclick="checkAllBoxes()" class="master-checkbox"/></td>
-            <td>dummyfag</td>
-            <td>10:45</td>
-            <td>11:45</td>
-        </tr>
-        <tr>
-            <td class="leftmost"><input type="checkbox" onclick="checkAllBoxes()" class="master-checkbox"/></td>
-            <td>dummyfag</td>
-            <td>10:45</td>
-            <td>11:45</td>
-        </tr>
+        @foreach (var e in ViewBag.BookingList)
+        { 
+            <tr>
+                <td class="leftmost"><input type="checkbox" onclick="checkAllBoxes()" class="master-checkbox"/></td>
+                <td>@e.Subject.Name</td>
+                <td>@e.StartTime</td>
+                <td>@e.EndTime</td>
+            </tr>
+        }
     </table>
 
     <input type ="button" onclick = "goToCreateBooking()" value = "Opret ny" />
-    <input type ="button" onclick = "deleteBooking()" value="Slet" />
+    <input id="btn-delete" type ="button" onclick = "deleteBooking()" value="Slet" />
 </div>
