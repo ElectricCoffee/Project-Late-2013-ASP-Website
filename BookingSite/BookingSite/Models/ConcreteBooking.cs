@@ -20,6 +20,7 @@ namespace BookingSite.Models
         private byte StatusChangedNum { get; set; }
         public int PossibleBookingId { get; set; }
         public int BookingId { get; set; }
+        public Student Student { get; set; }
 
         public BookingType Type
         {

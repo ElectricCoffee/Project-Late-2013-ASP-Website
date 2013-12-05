@@ -10,6 +10,6 @@ namespace BookingSite.Models
         public int Id { get; private set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
-        public int SubjectId { get; set; }
+        public Subject Subject { get; set; }
     }
 }

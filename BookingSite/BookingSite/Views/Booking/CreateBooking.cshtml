@@ -7,27 +7,25 @@
 </script>
 <div class="main-content">
     <h1>Ny booking</h1>
-
-    <h2>Fag</h2>
-    <select name="subject">
-        @foreach (var subject in ViewBag.Subjects) {
-             <option value="@subject.Id">@subject.Name</option>
-        }
-    </select>
-
-    <h2>Dato</h2>
-    <select name="date">
-        @foreach (var booking in ViewBag.Bookings) { 
-            <option value="@booking.Id">@booking.StartTime</option>
-        }
-    </select>
-
-    <div class ="comment" >
-        <label for="comment_box"><h2>Kommentar</h2></label>
-        <textarea name="comment_box" cols="35" rows="5" ></textarea>
-    </div>
-
     <form method="post"> 
+        <h2>Fag</h2>
+        <select name="subject">
+            @foreach (var subject in ViewBag.Subjects) {
+                 <option value="@subject.Name">@subject.Name</option>
+            }
+        </select>
+
+        <h2>Dato</h2>
+        <select name="date">
+            @foreach (var booking in ViewBag.Bookings) { 
+                <option value="@booking.StartTime">@booking.StartTime</option>
+            }
+        </select>
+
+        <div class ="comment" >
+            <label for="comment_box"><h2>Kommentar</h2></label>
+            <textarea name="comment_box" cols="35" rows="5" ></textarea>
+        </div>
         <input type ="submit" value = "Create" />
         <input type ="button" onclick = "cancel()" value="Annuller" />
     </form>

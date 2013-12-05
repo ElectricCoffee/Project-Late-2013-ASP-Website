@@ -10,5 +10,6 @@ namespace BookingSite.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public Teacher Teacher { get; set; }
+        public Semester Semester { get; set; }
     }
 }
