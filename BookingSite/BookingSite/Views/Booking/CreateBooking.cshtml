@@ -11,23 +11,23 @@
     <h2>Fag</h2>
     <select name="subject">
         @foreach (var subject in ViewBag.Subjects) {
-             <option value="getSubject">@subject.Name</option>
+             <option value="@subject.Id">@subject.Name</option>
         }
     </select>
 
     <h2>Dato</h2>
     <select name="date">
-        @foreach (var date in ViewBag.Bookings) { 
-            <option value="choseAvivableDate">@date.StartTime</option>
+        @foreach (var booking in ViewBag.Bookings) { 
+            <option value="@booking.Id">@booking.StartTime</option>
         }
     </select>
 
-    <div class ="comment" name="comment">
-        <label for="comment"><h2>Kommentar</h2></label>
-        <textarea name="Text1" cols="35" rows="5" ... ></textarea>
+    <div class ="comment" >
+        <label for="comment_box"><h2>Kommentar</h2></label>
+        <textarea name="comment_box" cols="35" rows="5" ></textarea>
     </div>
 
-    <form method="post" action="CreateBooking/do"> 
+    <form method="post"> 
         <input type ="submit" value = "Create" />
         <input type ="button" onclick = "cancel()" value="Annuller" />
     </form>

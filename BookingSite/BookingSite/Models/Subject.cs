@@ -7,9 +7,8 @@ namespace BookingSite.Models
 {
     public class Subject
     {
-        public int Id { get; private set; }
+        public int Id { get; set; }
         public string Name { get; set; }
-        private int SemesterId { get; set; }
-        private int TeacherId { get; set; }
+        public Teacher Teacher { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Script.Serialization;
@@ -20,6 +21,7 @@ namespace BookingSite.Utils
         public static T DeserializeJson<T>(this string input)
         {
             // return new JavaScriptSerializer().Deserialize<T>(input);
+            Debug.WriteLine(input);
             return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(input);
         }
 

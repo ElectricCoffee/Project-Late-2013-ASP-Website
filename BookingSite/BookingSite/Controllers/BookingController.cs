@@ -18,24 +18,30 @@ namespace BookingSite.Controllers
             return View();
         }
 
+        //
+        // GET: /Booking/CreateBooking
+
         [HttpGet,ActionName ("CreateBooking")]
         public ActionResult CreateBooking()
         {
             var possibleBookings = ServerCommunicator.Get("http://localhost:14781/api/possiblebooking").DeserializeJson<PossibleBooking[]>();
             var subjects = ServerCommunicator.Get("http://localhost:14781/api/subject").DeserializeJson<Subject[]>();
-
+            
             ViewBag.Bookings = possibleBookings;
             ViewBag.Subjects = subjects;
            
             return View();
         }
 
-        [HttpPost,ActionName("CreateBooking/do")]
+        //
+        // POST: /Booking/CreateBooking
+
+        [HttpPost,ActionName("CreateBooking")]
         public ActionResult CreateConcreteBooking()
         {
             var subject = Request.Form["subject"];
             var date = Request.Form["date"];
-            var comment= Request.Form["comment"];
+            var comment= Request.Form["comment_box"];
 
             ConcreteBooking concreteBooking = new ConcreteBooking();
             var subjects = ServerCommunicator.Get("http://localhost:14781/api/subject").DeserializeJson<Subject[]>();
