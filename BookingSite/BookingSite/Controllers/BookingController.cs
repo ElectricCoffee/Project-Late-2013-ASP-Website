@@ -18,9 +18,13 @@ namespace BookingSite.Controllers
 
         public ActionResult Index()
         {
-            var concreteBookings = ServerCommunicator.Get(SERVER_URI + "concretebooking").DeserializeJson<Models.ConcreteBooking[]>().ToList();
+            var json = ServerCommunicator.Get(SERVER_URI + "concretebooking");
 
-            ViewBag.BookingList = concreteBookings.Where(cb => cb.Student.Username.Equals(username));
+            var concreteBookings = json.DeserializeJson<IEnumerable<Models.ConcreteBooking>>();
+
+            var bookinglist =  concreteBookings.Where(cb => cb.Student.Username.Equals(username));
+
+            ViewBag.BookingList = bookinglist;
             
             return View();
         }

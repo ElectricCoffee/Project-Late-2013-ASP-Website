@@ -1,29 +1,76 @@
 ﻿<link href="~/Content/themes/Styles/StyleSheetBooking.css" rel="stylesheet" type="text/css">
 <script>
-    function goToCreateBooking() { window.location.href = "/Booking/CreateBooking" };
-    function deleteBooking() { };
+	$(document).ready(function () {
+		deleteOnClick();
+	});
+
+	function checkAllBoxes() {
+		if ($(".master-checkbox").is(":checked"))
+			$(".check").prop("checked", true);
+		else
+			$(".check").prop("checked", false);
+	}
+
+	function find(func) {
+		var table = $("#table tr");
+		console.log(table.text());
+		table.each(function (index) {
+			if (index != 0) {
+				var row = $(this);
+				var checkbox = row.find('td input');
+				var checked = checkbox.is(":checked");
+				if (checked) {
+					func(row);
+				}
+			}
+		});
+	}
+
+	function deleteAction() {
+		var id;
+		find(function (row) { id = row.children().eq(1).text(); });
+		console.log("ID: " + id);
+		window.location.href = "/Booking/DeleteBooking/" + id;
+	}
+
+	function goToCreateBooking() { window.location.href = "/Booking/CreateBooking" };
+
+	function deleteOnClick() {
+		var btn = $("a#btn-delete");
+		
+		btn.click(function (e) {
+			var dialogResult = confirm("Er du sikker på du vil slette den valgte booking?");
+			
+			if (dialogResult == true)
+				deleteAction();
+			else
+				e.preventDefault();
+		});
+	}
 </script>
 <div class="main-content">
-    <h1> Mine bookinger </h1>
+	<h1> Mine bookinger </h1>
 
-    <table class="table" id="table">
-        <tr>
-            <th class="leftmost"><input type="checkbox" onclick="checkAllBoxes()" class="master-checkbox"/></th>
-            <th>Fag</th>
-            <th>Starttid</th>
-            <th>Sluttid</th>
-        </tr>
-        @foreach (var e in ViewBag.BookingList)
-        { 
-            <tr>
-                <td class="leftmost"><input type="checkbox" onclick="checkAllBoxes()" class="master-checkbox"/></td>
-                <td>@e.Subject.Name</td>
-                <td>@e.StartTime</td>
-                <td>@e.EndTime</td>
-            </tr>
-        }
-    </table>
+	<table class="table" id="table">
+		<tr>
+			<th class="leftmost"><input type="checkbox" onclick="checkAllBoxes()" class="master-checkbox"/></th>
+			<th class="hidden"></th>
+			<th>Fag</th>
+			<th>Starttid</th>
+			<th>Sluttid</th>
+		</tr>
+		@foreach (var e in ViewBag.BookingList)
+		{ 
+			<tr>
+				<td class="leftmost"><input type="checkbox" class="slave-checkbox"/></td>
+				<td class="hidden">@e.Id</td>
+				<td>@e.Subject.Name</td>
+				<td>@e.StartTime</td>
+				<td>@e.EndTime</td>
+			</tr>
+		}
+	</table>
 
-    <input type ="button" onclick = "goToCreateBooking()" value = "Opret ny" />
-    <input id="btn-delete" type ="button" onclick = "deleteBooking()" value="Slet" />
+	<button onclick="goToCreateBooking()">Opret ny</button>
+	<button id="btn-delete">Slet</button>
 </div>

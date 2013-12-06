@@ -51,7 +51,7 @@ input[type=text], input[type=password] {
     background-color: #f0f0f0;
 }
 
-input[type=submit] {
+input[type=submit], button {
     font-size: 16px;    
     display: inline-block;
     float: right;
@@ -66,17 +66,17 @@ input[type=submit] {
     -webkit-transition: 1s background-color;
 }
 
-input[type=submit]:hover {
+input[type=submit]:hover, button:hover {
     background-color: #29adad;
 }
 
-input[type=submit]:active {
+input[type=submit]:active, button:active {
     position: relative;
     top: 1px;
     border: 0;
 }
 
-input[type=submit]:after {
+input[type=submit]:after, button:after {
    content: " "; /* Older browser do not support empty content */
    visibility: hidden;
    display: block;
@@ -143,4 +143,8 @@ body, html, .main-content {
 
     min-height: 100%;
     height: 100%;
+}
+
+.hidden {
+    display: none;
 }
