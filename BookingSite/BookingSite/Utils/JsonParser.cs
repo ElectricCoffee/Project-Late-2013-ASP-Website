@@ -20,9 +20,9 @@ namespace BookingSite.Utils
         /// <returns>An Object that contains the data</returns>
         public static T DeserializeJson<T>(this string input)
         {
-            // return new JavaScriptSerializer().Deserialize<T>(input);
             Debug.WriteLine(input);
             return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(input);
+            //return new JavaScriptSerializer().Deserialize<T>(input);
         }
 
         /// <summary>

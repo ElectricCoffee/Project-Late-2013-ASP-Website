@@ -24,7 +24,8 @@ namespace BookingSite
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/scripts").Include(
-                        "~/Scripts/possibleBookingLogic.js"));
+                        "~/Scripts/possibleBookingLogic.js",
+                        "~/Scripts/concreteBookingLogic.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css"));
 

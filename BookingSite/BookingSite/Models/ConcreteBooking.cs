@@ -14,7 +14,7 @@ namespace BookingSite.Models
 
     public class ConcreteBooking:Booking
     {
-        public int Id { get; private set; }
+        public int Id { get; set; }
         private byte TypeNum { get; set; }
         public string Comment { get; set; }
         private byte StatusChangedNum { get; set; }

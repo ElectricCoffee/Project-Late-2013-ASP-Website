@@ -2,6 +2,7 @@
 using BookingSite.Utils;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -19,9 +20,7 @@ namespace BookingSite.Controllers
         public ActionResult Index()
         {
             var json = ServerCommunicator.Get(SERVER_URI + "concretebooking");
-
             var concreteBookings = json.DeserializeJson<IEnumerable<Models.ConcreteBooking>>();
-
             var bookinglist =  concreteBookings.Where(cb => cb.Student.Username.Equals(username));
 
             ViewBag.BookingList = bookinglist;
@@ -32,7 +31,7 @@ namespace BookingSite.Controllers
         //
         // GET: /Booking/CreateBooking
 
-        [HttpGet,ActionName ("CreateBooking")]
+        [HttpGet, ActionName("CreateBooking")]
         public ActionResult CreateBooking()
         {
             var possibleBookings = ServerCommunicator.Get(SERVER_URI + "possiblebooking").DeserializeJson<PossibleBooking[]>();
@@ -89,5 +88,14 @@ namespace BookingSite.Controllers
             return new RedirectResult("Index");
         }
 
+        [HttpDelete, ActionName("DeleteBooking")]
+        public ActionResult Delete(string id)
+        {
+            Debug.WriteLine("Received ID: " + id);
+
+            ServerCommunicator.Delete(SERVER_URI + "concretebooking/" + id);
+
+            return Index();
+        }
     }
 }
