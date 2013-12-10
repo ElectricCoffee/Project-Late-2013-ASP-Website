@@ -4,14 +4,15 @@
 
 <h2>Dagsrapport</h2>
 
-<form method="get"> 
+<form method="post" action="Filter"> 
         <div class="chose-date">
         <h2>Vælg dato</h2>
-            <select name="date">
+            <select name="date" id="date">
             @foreach (var date in ViewBag.Dates) {
-                 <option value="@date"></option>
+                 <option>@date</option>
             }
             </select>
+            <input type ="submit" value = "Se rapport" />
        </div>
 </form>
 <div class="repport-table">
@@ -24,5 +25,15 @@
                 <th>Fag</th>
                 <th>Tid</th>
             </tr>
-    </form>
+
+            @foreach (var e in ViewBag.Bookings)
+            {
+                <tr>
+                <td></td>
+                <td>@e.Student.Name.FirstName</td>
+                <td>@e.Student.Name.LastName</td>
+                <td>@e.Subject.Name</td>
+                <td>@e.StartTime</td> 
+                </tr>
+            }
 </div>
