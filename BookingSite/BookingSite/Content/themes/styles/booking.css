@@ -1,0 +1,8 @@
+﻿#concrete-booking {
+    height: 100%;
+}
+
+#concrete-booking .time {
+    display: inline-block;
+    margin-right: 10px;
+}

@@ -17,28 +17,6 @@ function resetFormOnClick() {
     });
 }
 
-function checkAllBoxes() {
-    if ($(".master-checkbox").is(":checked"))
-        $(".check").prop("checked", true);
-    else
-        $(".check").prop("checked", false);
-}
-
-function find(func) {
-    var table = $("#table tr");
-    console.log(table.text());
-    table.each(function (index) {
-        if (index != 0) {
-            var row = $(this);
-            var checkbox = row.find('td input');
-            var checked = checkbox.is(":checked");
-            if (checked) {
-                func(row);
-            }
-        }
-    });
-}
-
 function detailAction() {
     var id;
     find(function (row) { id = row.children().eq(1).text(); });

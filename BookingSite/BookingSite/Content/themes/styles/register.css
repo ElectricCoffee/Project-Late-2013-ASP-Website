@@ -1,0 +1,8 @@
+﻿#register-user header {
+    border: none;
+    height: 30px;
+}
+
+#register-user .login-field {
+    margin-top: -220px;
+}

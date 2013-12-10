@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/themes/styles/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body>
+<body id="@ViewBag.PageId">
     @RenderBody()
 
     @Scripts.Render("~/bundles/jquery")

@@ -1,0 +1,44 @@
+﻿/* POSSIBLE BOOKING */
+
+#possible-booking {
+    height: 100%;
+}
+
+#possible-booking header {
+    border: none;
+    height: auto;
+    padding-left: 0;
+    border-bottom: 1px solid #bfbfbf;
+}
+
+#possible-booking .fields {
+    display: table-row;
+}
+
+#possible-booking .input-field,
+#possible-booking .delay {
+    width: 250px;
+    display: table-cell;
+}
+
+#possible-booking .input-field {
+    padding-right: 100px;
+}
+
+#possible-booking .input-field p {
+    display: table-row;
+}
+
+#possible-booking .input-field label,
+#possible-booking .input-field input {
+    display: table-cell;
+}
+
+#possible-booking input[type=text].input_subject,
+#possible-booking .input-field input[type=submit] {
+    margin-bottom: 20px;
+}
+
+#possible-booking .booking-table table {
+    background-color: #f0f0f0;
+}

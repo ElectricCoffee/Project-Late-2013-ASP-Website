@@ -24,8 +24,8 @@ namespace BookingSite
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/scripts").Include(
-                        "~/Scripts/possibleBookingLogic.js",
-                        "~/Scripts/concreteBookingLogic.js"));
+                        "~/Scripts/possibleBookingLogic.js"/*,
+                        "~/Scripts/concreteBookingLogic.js"*/));
 
             bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css"));
 
@@ -42,6 +42,13 @@ namespace BookingSite
                         "~/Content/themes/base/jquery.ui.datepicker.css",
                         "~/Content/themes/base/jquery.ui.progressbar.css",
                         "~/Content/themes/base/jquery.ui.theme.css"));
+
+            bundles.Add(new StyleBundle("~/Content/themes/styles/css").Include(
+                        "~/Content/themes/styles/main.css",
+                        "~/Content/themes/styles/login.css",
+                        "~/Content/themes/styles/register.css",
+                        "~/Content/themes/styles/possible-booking.css",
+                        "~/Content/themes/styles/booking.css"));
         }
     }
 }

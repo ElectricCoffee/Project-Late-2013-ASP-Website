@@ -1,4 +1,4 @@
-﻿<link href="~/Content/themes/Styles/StyleSheetBooking.css" rel="stylesheet" type="text/css">
+﻿@{ ViewBag.PageId = "concrete-booking"; }
 <div class="main-content">
 	<h1> Mine bookinger </h1>
 
@@ -22,6 +22,6 @@
 		}
 	</table>
 
-	<button onclick="goToCreateBooking()">Opret ny</button>
+	<a class="btn" href="/booking/createbooking">Opret ny</a>
 	<button id="btn-delete">Slet</button>
 </div>

@@ -1,9 +1,8 @@
-﻿<link href="~/Content/themes/Styles/StyleSheetBooking.css" rel="stylesheet" type="text/css">
+﻿@{ ViewBag.PageId = "concrete-booking"; }
 <script>    
     function getSubject() { };
     function choseAvivableDate() { };
     function cancel() { };
-
 </script>
 <div class="main-content">
     <h1>Ny booking</h1>
@@ -27,6 +26,6 @@
             <textarea name="comment_box" cols="35" rows="5" ></textarea>
         </div>
         <input type ="submit" value = "Create" />
-        <input type ="button" onclick = "cancel()" value="Annuller" />
+        <button onclick = "cancel()">Annuller</button>
     </form>
 </div>
