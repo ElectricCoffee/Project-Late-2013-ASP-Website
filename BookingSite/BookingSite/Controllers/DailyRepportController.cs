@@ -13,11 +13,11 @@ namespace BookingSite.Controllers
         //
         // GET: /DailyRepport/
 
-        private const string SERVER_URI = "http://localhost:14781/api/";
+        private const string ITEM_URI = ServerCommunicator.SERVER_URI + "concretebooking";
 
         public ActionResult Index()
         {
-            var concreteBookings = ServerCommunicator.Get(SERVER_URI + "concretebooking").DeserializeJson<ConcreteBooking[]>();
+            var concreteBookings = ServerCommunicator.Get(ITEM_URI).DeserializeJson<ConcreteBooking[]>();
 
             var dates = new List<DateTime>();
 
@@ -41,7 +41,7 @@ namespace BookingSite.Controllers
         [HttpPost, ActionName("Filter")]
         public ActionResult GetDailyRepport()
         {
-            var concreteBookings = ServerCommunicator.Get(SERVER_URI + "concretebooking").DeserializeJson<ConcreteBooking[]>();
+            var concreteBookings = ServerCommunicator.Get(ITEM_URI).DeserializeJson<ConcreteBooking[]>();
             var dates = new List<DateTime>();
             foreach (var cb in concreteBookings)
             {
@@ -53,6 +53,15 @@ namespace BookingSite.Controllers
             var currentBookings = concreteBookings.Where(cb => cb.StartTime == date);
 
             return List(currentBookings, dates);
+        }
+
+        public ActionResult Finish(int id)
+        {
+            ServerCommunicator.Put(
+                ITEM_URI + "/" + id,
+                (new Models.ConcreteBooking { Type = Models.BookingType.Finished }).SerializeToJsonObject());
+
+            return Index();
         }
     }
 }

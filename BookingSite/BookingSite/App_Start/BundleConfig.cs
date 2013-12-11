@@ -27,7 +27,8 @@ namespace BookingSite
                         "~/Scripts/Logic/shared.js",
                         "~/Scripts/Logic/possibleBookingLogic.js",
                         "~/Scripts/Logic/concreteBookingLogic.js",
-                        "~/Scripts/Logic/approveStudentLogic.js"));
+                        "~/Scripts/Logic/approveStudentLogic.js",
+                        "~/Scripts/Logic/dailyReportLogic.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css"));
 
