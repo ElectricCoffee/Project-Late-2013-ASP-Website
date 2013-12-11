@@ -4,6 +4,7 @@
 
 body {
     margin: 0;
+    height: 100%;
     background-color: #333;
 }
 
@@ -29,12 +30,6 @@ footer {
     border-top: 10px solid rgba(12, 130, 132, 0.2);
 }
 
-input {
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-}
-
 .main {
     position: relative;
     height: 300px;
@@ -55,6 +50,9 @@ label, input[type=text], input[type=password] {
 input {
     margin-bottom: 20px;
     background-color: #f0f0f0;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 input[type=submit], button, .btn {
@@ -97,29 +95,39 @@ table{
     border-spacing: 0;
     margin-bottom: 20px;
 }
+
     table th {
         border-bottom: solid 2px #155959;
         border-right: 1px solid #155959;
         padding: 5px 10px;
         text-align: left;    
     }
+
     table th:first-child {
         padding: 5px 5px;
         border-right: solid 2px #155959;
     }
+
     table th:last-child {
         border-right: none;
     }
+
     table td {
         padding: 5px 10px;
         border-right: 1px solid #155959;
     }
+
     table td:first-child {
         padding: 5px 5px;
         border-right: 2px solid #155959;
     }
+
     table td:last-child {
         border-right: none;
+    }
+
+    table input[type=checkbox] {
+        margin-bottom: 0;
     }
 
 .hidden {
@@ -153,6 +161,7 @@ hr {
     border: none;
     margin-bottom: 20px;
 }
+
 select {
     padding: 4px 8px;
 }

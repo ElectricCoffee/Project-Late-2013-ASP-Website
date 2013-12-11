@@ -17,8 +17,7 @@
            </div>
     </form>
     <div class="repport-table">
-        <<form action="/DailyRepport/table">
-        <table border="1">
+        <table>
         <tr>
             <th><input type="checkbox" onclick="checkAllBoxes()" class="master-checkbox"/></th>
             <th>Fornavn</th>
@@ -30,12 +29,13 @@
         @foreach (var e in ViewBag.Bookings)
         {
             <tr>
-                <td></td>
+                <td><input type="checkbox" class="slave-checkbox"/></td>
                 <td>@e.Student.Name.FirstName</td>
                 <td>@e.Student.Name.LastName</td>
                 <td>@e.Subject.Name</td>
                 <td>@e.StartTime</td> 
             </tr>
         }
+            </table>
     </div>
 </div>
