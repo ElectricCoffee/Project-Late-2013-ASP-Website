@@ -21,7 +21,7 @@ namespace BookingSite.Controllers
 		{
 			Session["Bookings"] = new List<PossibleBooking>();
 
-			var possibleBookings = ServerCommunicator.Get("http://localhost:14781/api/possiblebooking").DeserializeJson<List<PossibleBooking>>();
+			var possibleBookings = ServerCommunicator.Get(POSSIBLE_BOOKING_URI).DeserializeJson<List<PossibleBooking>>();
 
 			var now = DateTime.Now;
 			var span = new TimeSpan(2,0,0);
@@ -54,7 +54,7 @@ namespace BookingSite.Controllers
 		[HttpPost, ActionName("input")]
 		public ActionResult InputActions()
 		{
-			var uri = String.Format("http://localhost:14781/api/PossibleBooking");
+			var uri = String.Format(POSSIBLE_BOOKING_URI);
 			var date = Request.Form["Date"];
 			var startTime = Request.Form["StartTime"];
 			var endTime = Request.Form["EndTime"];

@@ -13,8 +13,16 @@ function resetFormOnClick() {
             $(".input_start_time").val("");
             $(".input_end_time").val("");
             $("#submit-btn").val("Opret");
+            $("#field-heading").text("Opret Vejledningsperiode");
         }
     });
+}
+
+function delayAction() {
+    var id;
+    find(function (row) { id = row.children().eq(1).text(); });
+    var form = $(".fields .delay");
+    form.attr("action", form.attr("action") + id);
 }
 
 function detailAction() {
@@ -54,4 +62,5 @@ function editAction() {
     $(".input_start_time").val(startTime);
     $(".input_end_time").val(endTime);
     $("#submit-btn").val("Redigér");
+    $("#field-heading").text("Redigér Vejledningsperiode");
 }
