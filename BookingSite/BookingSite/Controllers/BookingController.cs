@@ -88,6 +88,9 @@ namespace BookingSite.Controllers
             return new RedirectResult("Index");
         }
 
+        //
+        // DELETE: /Booking/DeleteBooking
+
         [HttpDelete, ActionName("DeleteBooking")]
         public ActionResult Delete(string id)
         {

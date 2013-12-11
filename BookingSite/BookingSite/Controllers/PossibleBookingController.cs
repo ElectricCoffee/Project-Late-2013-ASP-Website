@@ -13,43 +13,42 @@ namespace BookingSite.Controllers
 {
 	public class PossibleBookingController : Controller
 	{
-	private const string ISO8601_FORMAT = "{0}T{1}Z";
+	private const string
+		POSSIBLE_BOOKING_URI = ServerCommunicator.SERVER_URI + "/possiblebooking",
+		ISO8601_FORMAT = "{0}T{1}Z";
 
 		public ActionResult Index()
 		{
-			Session["Bookings"] = new PossibleBookingList();
+			Session["Bookings"] = new List<PossibleBooking>();
 
-			ServerCommunicator.Get("http://localhost:14781/api/possiblebooking").DeserializeJson<IEnumerable<PossibleBooking>>();
+			var possibleBookings = ServerCommunicator.Get("http://localhost:14781/api/possiblebooking").DeserializeJson<List<PossibleBooking>>();
 
 			var now = DateTime.Now;
 			var span = new TimeSpan(2,0,0);
 			var endDate = now.Add(span);
 
-			(Session["Bookings"] as PossibleBookingList).CreateBookings(
-				new PossibleBooking
-				{
-					Id = 1,
-					Subject = new Subject { Name = "Android", Id = 2 },
-					StartTime = now,
-					EndTime = endDate
-				},
-				new PossibleBooking
-				{
-					Id = 2,
-					Subject = new Subject { Name = "Design of Applications", Id = 1 },
-					StartTime = now.Add(new TimeSpan(2, 0, 0, 0)),
-					EndTime = now.Add(new TimeSpan(5, 30, 0))
-				});
+			possibleBookings.ForEach(pb => (Session["Bookings"] as List<PossibleBooking>).Add(pb));
 
-			ViewBag.Bookings = (Session["Bookings"] as PossibleBookingList).ReadBookings();
+			ViewBag.Bookings = (Session["Bookings"] as List<PossibleBooking>);
 
-			return View();
+			return View("Index");
+		}
+
+		[HttpPost, ActionName("delay")]
+		public ActionResult DelayBooking(int id)
+		{
+			var duration = double.Parse(Request.Form["duration"]);
+			var delay = new Messages.Delay { Duration = TimeSpan.FromMinutes(duration) };
+			ServerCommunicator.Put(
+				POSSIBLE_BOOKING_URI + "/" + id,
+				delay.SerializeToJsonObject());
+			return Index();
 		}
 
 		[HttpPost, ActionName("delete")]
 		public ActionResult DeleteBooking()
 		{
-			return View(); // placeholder
+			return Index(); // placeholder
 		}
 
 		[HttpPost, ActionName("input")]
