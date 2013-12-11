@@ -126,6 +126,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ApproveStudentController.cs" />
     <Compile Include="Controllers\BookingController.cs" />
     <Compile Include="Controllers\DailyRepportController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -256,6 +257,7 @@
     <Content Include="Views\Booking\Index.cshtml" />
     <Content Include="Views\Booking\CreateBooking.cshtml" />
     <Content Include="Views\DailyRepport\Index.cshtml" />
+    <Content Include="Views\ApproveStudent\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
