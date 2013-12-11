@@ -48,7 +48,8 @@ namespace BookingSite
                         "~/Content/themes/styles/login.css",
                         "~/Content/themes/styles/register.css",
                         "~/Content/themes/styles/possible-booking.css",
-                        "~/Content/themes/styles/booking.css"));
+                        "~/Content/themes/styles/booking.css",
+                        "~/Content/themes/styles/daily-repport.css"));
         }
     }
 }

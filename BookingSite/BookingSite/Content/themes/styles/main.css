@@ -153,3 +153,6 @@ hr {
     border: none;
     margin-bottom: 20px;
 }
+select {
+    padding: 4px 8px;
+}

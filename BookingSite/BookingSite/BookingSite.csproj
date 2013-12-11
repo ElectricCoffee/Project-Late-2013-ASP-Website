@@ -210,6 +210,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Content\themes\styles\booking.css" />
+    <Content Include="Content\themes\styles\daily-repport.css" />
     <Content Include="Content\themes\styles\login.css" />
     <Content Include="Content\themes\styles\main.css" />
     <Content Include="Content\themes\styles\possible-booking.css" />

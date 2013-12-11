@@ -1,12 +1,14 @@
 ﻿@{
     ViewBag.Title = "Index";
+    ViewBag.PageId = "daily-repport";
 }
+<div class="main-content">
 
-<h2>Dagsrapport</h2>
+<h1>Dagsrapport</h1>
 
 <form method="post" action="Filter"> 
         <div class="chose-date">
-        <h2>Vælg dato</h2>
+        <h3>Vælg dato</h3>
             <select name="date" id="date">
             @foreach (var date in ViewBag.Dates) {
                  <option>@date</option>
@@ -36,4 +38,5 @@
                 <td>@e.StartTime</td> 
                 </tr>
             }
+</div>
 </div>
