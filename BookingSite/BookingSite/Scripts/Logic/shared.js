@@ -1,6 +1,6 @@
 ﻿function find(func) {
-    var table = $("#table tr");
-    console.log(table.text());
+    var table = $("table tr");
+    //console.log(table.text());
     table.each(function (index) {
         if (index != 0) {
             var row = $(this);

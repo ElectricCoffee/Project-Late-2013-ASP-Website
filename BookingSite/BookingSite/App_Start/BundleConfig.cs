@@ -24,8 +24,10 @@ namespace BookingSite
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/scripts").Include(
-                        "~/Scripts/possibleBookingLogic.js"/*,
-                        "~/Scripts/concreteBookingLogic.js"*/));
+                        "~/Scripts/Logic/shared.js",
+                        "~/Scripts/Logic/possibleBookingLogic.js",
+                        "~/Scripts/Logic/concreteBookingLogic.js",
+                        "~/Scripts/Logic/approveStudentLogic.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css"));
 

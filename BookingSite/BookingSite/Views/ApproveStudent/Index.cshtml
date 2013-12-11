@@ -6,26 +6,31 @@
     <h1>Godkend Studerende</h1>
 
     <section class="approved-table">
-    <form action="/Approved/table">
-    <table border="1">
-        <tr>
-            <th><input type="checkbox" onclick="checkAllBoxes()" class="master-checkbox"/></th>
-            <th>Fornavn</th>
-            <th>Efternavn</th>
-            <th>Hold</th>
-            <th>Username</th>
-        </tr>
-
-        @foreach (var e in ViewBag.Students)
-        {
+        <table>
             <tr>
-                <td><input type="checkbox" class="check"/></td>
-                <td>@e.Name.FirstName</td>
-                <td>@e.Name.LastName</td>
-                <td></td>
-                <td></td> 
+                <th><input type="checkbox" class="master-checkbox"/></th>
+                <th class="hidden">ID</th>
+                <th>Fornavn</th>
+                <th>Efternavn</th>
+                <th>Hold</th>
+                <th>Username</th>
             </tr>
-        }
-    </table>
+
+            @foreach (var e in ViewBag.Students)
+            {
+                <tr>
+                    <td><input type="checkbox" class="check"/></td>
+                    <td class="hidden">@e.Id</td>
+                    <td>@e.Name.FirstName</td>
+                    <td>@e.Name.LastName</td>
+                    <td>@e.HomeRoomClass.Name</td>
+                    <td>@e.Username</td> 
+                </tr>
+            }
+        </table>
     </section>
+       <div class="buttons">
+           <button id="btn-approve">Godkend</button>
+           <button id="btn-reject">Afvis</button>
+       </div>
 </div>

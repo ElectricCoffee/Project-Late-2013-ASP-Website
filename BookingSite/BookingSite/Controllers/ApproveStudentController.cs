@@ -15,18 +15,18 @@ namespace BookingSite.Controllers
 
         public ActionResult Index()
         {
-            List<Student> students = new List<Student>();
-            students.Add(new Student
-                {
-                    Name = new Name
-                        {
-                            FirstName = "Trine",
-                            LastName = "Thune"
-                        }
-                });
+            var students = ServerCommunicator.Get(SERVER_URI + "student").DeserializeJson<Student[]>();
+            //Get list of student from REST server
+
             ViewBag.Students = students;
 
-            return View();
+            return View("Index");
+        }
+
+        public ActionResult Approve(int id)
+        {
+            
+            return Index();
         }
     }
 }
