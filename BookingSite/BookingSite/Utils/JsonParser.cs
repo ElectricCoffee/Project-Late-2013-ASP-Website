@@ -21,6 +21,15 @@ namespace BookingSite.Utils
         public static T DeserializeJson<T>(this string input)
         {
             Debug.WriteLine(input);
+
+            if (input.Equals("{}"))
+            {
+                if (typeof(T) == typeof(IEnumerable<>).MakeGenericType(typeof(T).GetGenericArguments()[0]))
+                    return (T) Activator.CreateInstance(typeof(List<>).MakeGenericType(typeof(T).GetGenericArguments()[0]));
+                else
+                    return Activator.CreateInstance<T>();
+            }
+
             return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(input);
             //return new JavaScriptSerializer().Deserialize<T>(input);
         }

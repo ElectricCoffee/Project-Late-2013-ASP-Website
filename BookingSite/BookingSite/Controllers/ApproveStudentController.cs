@@ -15,8 +15,8 @@ namespace BookingSite.Controllers
 
         public ActionResult Index()
         {
-            var students = ServerCommunicator.Get(STUDENT_URI).DeserializeJson<Student[]>();
-            //Get list of student from REST server
+            // get list of student from REST server
+            var students = ServerCommunicator.Get(STUDENT_URI + "?approved=false").DeserializeJson<IEnumerable<Student>>();
 
             ViewBag.Students = students;
 

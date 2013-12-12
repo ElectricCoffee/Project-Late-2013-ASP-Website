@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -41,7 +42,18 @@ namespace BookingSite.Utils
         public static string Get(string inputUri) 
         {
             string result = "";
-            CommunicationHelper(inputUri, (client, uri) => result = client.DownloadString(uri));
+            CommunicationHelper(inputUri, (client, uri) => 
+            {
+                try
+                {
+                    result = client.DownloadString(uri);
+                }
+                catch (WebException we)
+                {
+                    Debug.WriteLine("DEBUG: " + we.Message);
+                    result = "{}";
+                }
+            });
             return result;
         }
 
