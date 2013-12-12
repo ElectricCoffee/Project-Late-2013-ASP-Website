@@ -167,7 +167,7 @@ select {
 }
 
 .popup {
-	position: relative;
+	position: absolute;
 	display: none;
 	background: #f9f9f9;
 	/* width: 300px; */  
@@ -176,7 +176,13 @@ select {
 	border: 1px solid #111;
 	margin:0px;
 	border-radius: 5px;
+	right: 10px;
+	bottom: 10px;
 }
+
+	.popup .wrapper {
+		position: relative;
+	}
 
 	.popup p img {
 		vertical-align: middle;
@@ -188,3 +194,7 @@ select {
 		top: 10px;
 		right: 10px;
 	}
+
+a:hover {
+	cursor: pointer;
+}

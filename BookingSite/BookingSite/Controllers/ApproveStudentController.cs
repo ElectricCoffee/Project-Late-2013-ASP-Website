@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
 
@@ -37,5 +38,33 @@ namespace BookingSite.Controllers
 
             return Index();
         }
+
+        //public HttpResponseMessage Count()
+        //{
+        //    // "http://localhost:14781/api/student/count"
+
+        //    int count = 0xDEAD;
+
+        //    int.TryParse(ServerCommunicator.Get(STUDENT_URI + "/count?approved=false"), out count);
+
+        //    var message =  new HttpResponseMessage();
+        //    message.Content = new StringContent(count.ToString());
+        //    message.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("text/plain");
+
+        //    return message;
+
+        //}
+
+        public Int32 Count()
+        {
+            // "http://localhost:14781/api/student/count"
+
+            int count = 0xDEAD;
+
+            int.TryParse(ServerCommunicator.Get(STUDENT_URI + "/count?approved=false"), out count);
+
+            return count;
+
+        } 
     }
 }

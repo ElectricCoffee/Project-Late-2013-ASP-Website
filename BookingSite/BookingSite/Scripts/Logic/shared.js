@@ -1,28 +1,25 @@
 ﻿$(document).ready(function () {
-    console.log("ready!");
     checkForPendingStudents();
-
-    $(".popup .close").click(function () {
-        console.log("fading");
-        $(".popup").fadeOut(400);
-    });
 });
 
 function checkForPendingStudents() {
-    $.ajax({
-        type: "GET",
-        url: "http://localhost:14781/api/student/count",
-        data: "approved=false",
-        dataType: "text",
-        contentType: "text/plain",
-        error: function (xhr, error, thrown) {
-            console.log(xhr.toString() + "\n" + error + " " + thrown);
-            var err = eval("(" + xhr.responseText + ")");
-            console.log(err.Message);
-        }
-    }).done(function (msg) {
-        console.log("output " + msg.d);
-    });
+    if (!$("body").is("#approve-student")) {
+        $.ajax({
+            type: "GET",
+            url: "/approvestudent/count",
+            dataType: "text",
+            contentType: "text/plain",
+            success: function (data) {
+                console.log(data);
+                helper(data);
+            },
+            error: function (xhr, error, thrown) {
+                console.log(xhr.toString() + "\n" + error + " " + thrown);
+                var err = eval("(" + xhr.responseText + ")");
+                console.log(err.Message);
+            }
+        });
+    }
 }
 
 function helper(studentCount) {
@@ -32,17 +29,25 @@ function helper(studentCount) {
 }
 
 function popup() {
-    $("body").html("<div class='popup'>"
-        + "<a class='close' href='#'>"
-        + "<img src='~/Content/images/Actions-window-close-icon.png' alt='information_icon'>"
+    var body = $("body");
+    body.append("<div class='popup' href=''>"
+        + "<a class='close'>"
+        + "<img src='/Content/images/Actions-window-close-icon.png' alt='information_icon'>"
         + "</a>"
+        + "<div class='wrapper'>"
         + "<p>"
-        + "<img src='~/Content/images/Info-icon 64x64.png' />"
+        + "<img src='/Content/images/Info-icon 64x64.png' />"
         + "<a href='/approvestudent'>Der er nye studerende!</a>"
         + "</p>"
+        + "</div>"
         + "</div>");
 
     $(".popup").slideDown(400).css("display", "inline-block");
+
+    $(".popup .close").click(function () {
+        console.log("fading");
+        $(".popup").fadeOut(400);
+    });
 }
 
 function find(func) {
