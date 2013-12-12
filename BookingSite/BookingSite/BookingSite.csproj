@@ -137,6 +137,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Messages\Approve.cs" />
+    <Compile Include="Messages\ApproveBooking.cs" />
     <Compile Include="Messages\Delay.cs" />
     <Compile Include="Models\Booking.cs" />
     <Compile Include="Models\ConcreteBooking.cs" />

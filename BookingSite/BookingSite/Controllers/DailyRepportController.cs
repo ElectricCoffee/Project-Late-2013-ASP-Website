@@ -33,6 +33,7 @@ namespace BookingSite.Controllers
         public ActionResult List(IEnumerable<ConcreteBooking> concreteBookings, IEnumerable<DateTime> dates)
         {
             ViewBag.Bookings = concreteBookings;
+            ViewBag.PendingBookings = concreteBookings.Where(b => b.Type == BookingType.Pending);
             ViewBag.Dates = dates;
 
             return View("Index");
@@ -61,6 +62,20 @@ namespace BookingSite.Controllers
                 ITEM_URI + "/" + id,
                 (new Models.ConcreteBooking { Type = Models.BookingType.Finished }).SerializeToJsonObject());
 
+            return Index();
+        }
+
+        public ActionResult Approve(int id)
+        {
+            ServerCommunicator.Put(
+                ITEM_URI + "/" + id,
+                new Messages.ApproveBooking { Approved = Models.BookingType.Approved }.SerializeToJsonObject());
+            return Index();
+        }
+
+        public ActionResult Reject(int id)
+        {
+            ServerCommunicator.Delete(ITEM_URI + "/" + id);
             return Index();
         }
     }
