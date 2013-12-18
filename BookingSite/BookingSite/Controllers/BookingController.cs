@@ -11,8 +11,9 @@ namespace BookingSite.Controllers
 {
     public class BookingController : Controller
     {
-        private const string SERVER_URI = "http://localhost:14781/api/";
-        private string username = "trin123a";
+        private const string
+            SERVER_URI = "http://localhost:14781/api/",
+            USERNAME = "trin123a";
 
         //
         // GET: /Booking/
@@ -21,7 +22,7 @@ namespace BookingSite.Controllers
         {
             var json = ServerCommunicator.Get(SERVER_URI + "concretebooking");
             var concreteBookings = json.DeserializeJson<IEnumerable<Models.ConcreteBooking>>();
-            var bookinglist =  concreteBookings.Where(cb => cb.Student.Username.Equals(username));
+            var bookinglist =  concreteBookings.Where(cb => cb.Student.Username.Equals(USERNAME));
 
             ViewBag.BookingList = bookinglist;
             
@@ -67,15 +68,16 @@ namespace BookingSite.Controllers
                         {
                             var possibleBookingId = pb.Id;
 
-                            var concreteBooking = new ConcreteBooking();
-                            concreteBooking.Type = 0;
-                            concreteBooking.Subject = s;
-                            var startDate = DateTime.Parse(date);
-                            concreteBooking.StartTime = startDate;
-                            concreteBooking.EndTime = startDate.AddMinutes(pb.Duration);
-                            concreteBooking.Comment = comment;
-                            concreteBooking.PossibleBookingId = possibleBookingId;
-                            concreteBooking.Student = new Student { Username = username };
+                            var concreteBooking = new ConcreteBooking
+                            {
+                                Type = 0,
+                                Subject = s,
+                                StartTime = DateTime.Parse(date),
+                                Comment = comment,
+                                PossibleBookingId = possibleBookingId,
+                                Student = new Student { Username = USERNAME }
+                            };
+                            concreteBooking.EndTime = concreteBooking.StartTime.AddMinutes(pb.Duration);
 
                             var json = concreteBooking.SerializeToJsonObject();
 

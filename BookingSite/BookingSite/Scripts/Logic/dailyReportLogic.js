@@ -16,7 +16,7 @@ function finishAction() {
         id = row.children().eq(1).text();
         console.log("ID: " + id);
     });
-    window.location.href = "/dailyrepport/finish/" + id;
+    window.location.href = "/dailyreport/finish/" + id;
 }
 
 function approveBookingAction() {
@@ -25,7 +25,7 @@ function approveBookingAction() {
         id = row.children().eq(1).text();
         console.log("ID: " + id);
     });
-    window.location.href = "/dailyrepport/approve/" + id;
+    window.location.href = "/dailyreport/approve/" + id;
 }
 
 function rejectBookingAction() {
@@ -36,5 +36,5 @@ function rejectBookingAction() {
         console.log("ID: " + id);
     });
 
-    window.location.href = "/dailyrepport/reject/" + id;
+    window.location.href = "/dailyreport/reject/" + id;
 }

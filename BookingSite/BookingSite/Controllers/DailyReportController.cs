@@ -3,12 +3,11 @@ using BookingSite.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace BookingSite.Controllers
 {
-    public class DailyRepportController : Controller
+    public class DailyReportController : Controller
     {
         //
         // GET: /DailyRepport/
@@ -17,7 +16,7 @@ namespace BookingSite.Controllers
 
         public ActionResult Index()
         {
-            var concreteBookings = ServerCommunicator.Get(ITEM_URI).DeserializeJson<ConcreteBooking[]>();
+            var concreteBookings = ServerCommunicator.Get(ITEM_URI).DeserializeJson<IEnumerable<ConcreteBooking>>();
 
             var dates = new List<DateTime>();
 
@@ -27,12 +26,12 @@ namespace BookingSite.Controllers
                     dates.Add(cb.StartTime);
             }
 
-            return List(concreteBookings, dates);
+            return List(concreteBookings, dates);   
         }
 
         public ActionResult List(IEnumerable<ConcreteBooking> concreteBookings, IEnumerable<DateTime> dates)
         {
-            ViewBag.Bookings = concreteBookings;
+            ViewBag.Bookings = concreteBookings.Where(cb => cb.Type != BookingType.Pending);
             ViewBag.PendingBookings = concreteBookings.Where(b => b.Type == BookingType.Pending);
             ViewBag.Dates = dates;
 
@@ -69,7 +68,8 @@ namespace BookingSite.Controllers
         {
             ServerCommunicator.Put(
                 ITEM_URI + "/" + id,
-                new Messages.ApproveBooking { Approved = Models.BookingType.Approved }.SerializeToJsonObject());
+                new Models.ConcreteBooking { Type = Models.BookingType.Approved }.SerializeToJsonObject());
+
             return Index();
         }
 

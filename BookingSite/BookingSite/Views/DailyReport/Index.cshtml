@@ -1,10 +1,11 @@
-﻿@{ViewBag.PageId = "daily-repport";
-    ViewBag.Title = "Index";
-    }
+﻿@{
+    ViewBag.PageId = "daily-report";
+    ViewBag.Title = "Daglig Oversigt";
+}
 <div class="main-content">
     <h1>Dagsrapport</h1>
 
-    <form method="post" action="Filter"> 
+    <form method="post" action="@Url.Action("Filter", "DailyReport")"> 
             <div class="chose-date">
             <h3>Vælg dato</h3>
                 <select name="date" id="date">
@@ -51,7 +52,7 @@
             <th>Efternavn</th>
             <th>Fag</th>
             <th>Hold</th>
-            <th>Dato</th>
+            <th>Tid</th>
             <th>Kommentar</th>
         </tr>
              @foreach (var e in ViewBag.PendingBookings)
@@ -64,7 +65,7 @@
                 <td>@e.Subject.Name</td>
                 <td>@e.Student.HomeRoomClass.Name</td>
                 <td>@e.StartTime</td> 
-                <td>@e.Comment</td> 
+                <td title="@e.Comment">@e.Comment</td> 
             </tr>
         }
         </table>

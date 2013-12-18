@@ -128,7 +128,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ApproveStudentController.cs" />
     <Compile Include="Controllers\BookingController.cs" />
-    <Compile Include="Controllers\DailyRepportController.cs" />
+    <Compile Include="Controllers\DailyReportController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MemberPageController.cs" />
     <Compile Include="Controllers\PossibleBookingController.cs" />
@@ -137,7 +137,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Messages\Approve.cs" />
-    <Compile Include="Messages\ApproveBooking.cs" />
     <Compile Include="Messages\Delay.cs" />
     <Compile Include="Models\Booking.cs" />
     <Compile Include="Models\ConcreteBooking.cs" />
@@ -261,7 +260,7 @@
     <Content Include="Views\PossibleBooking\Details.cshtml" />
     <Content Include="Views\Booking\Index.cshtml" />
     <Content Include="Views\Booking\CreateBooking.cshtml" />
-    <Content Include="Views\DailyRepport\Index.cshtml" />
+    <Content Include="Views\DailyReport\Index.cshtml" />
     <Content Include="Views\ApproveStudent\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
